@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, send_file
 import pandas as pd
-from utils import get_topics, categorize_responses
+from backend.utils import get_topics, categorize_responses
 
 app = Flask(__name__)
 

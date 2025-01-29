@@ -1,5 +1,5 @@
 import time
-from utils import * 
+from backend.utils import * 
 
 
 df_file = str(input("Enter the name of the CSV file: "))
