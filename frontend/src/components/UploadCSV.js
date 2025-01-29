@@ -1,17 +1,29 @@
 import React, { useState } from "react";
 import { uploadFile } from "../api";
 
-const UploadCSV = ({ setColumns }) => {
-  const [file, setFile] = useState(null);
+const UploadCSV = ({ setColumns, setFile }) => {  // Accept setFile prop to store the file globally
+  const [selectedFile, setSelectedFile] = useState(null);
 
+  // Handle file selection
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const file = e.target.files[0];
+    setSelectedFile(file);
   };
 
+  // Upload file and retrieve columns
   const handleUpload = async () => {
-    if (file) {
-      const response = await uploadFile(file);
+    if (!selectedFile) {
+      alert("Please select a file before uploading.");
+      return;
+    }
+    
+    try {
+      const response = await uploadFile(selectedFile);
       setColumns(response.data.columns);
+      setFile(selectedFile); // Store the file globally
+      console.log("✅ File uploaded successfully:", selectedFile.name);
+    } catch (error) {
+      console.error("❌ Error uploading file:", error);
     }
   };
 
@@ -24,3 +36,4 @@ const UploadCSV = ({ setColumns }) => {
 };
 
 export default UploadCSV;
+
