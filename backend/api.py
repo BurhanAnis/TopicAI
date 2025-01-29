@@ -1,17 +1,16 @@
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import pandas as pd
-from backend.utils import get_topics, categorize_responses
+from utils import get_topics, categorize_responses
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route("/")
 def home():
+    
     return "API is running!"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
 
 topic_labels_store = {}
 topic_results_store = {}
@@ -148,3 +147,6 @@ def get_topic_distribution():
 
 
 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Default to 5000 locally
+    app.run(host="0.0.0.0", port=port)
