@@ -27,7 +27,12 @@ const Visualization = ({ distribution }) => {
     ],
   };
 
-  return <Bar ref={chartRef} data={data} />;
+  return (
+    <div className="chart-container">
+      <Bar ref={chartRef} data={data} options={{ responsive: true, maintainAspectRatio: false }} />
+    </div>
+  );
+  
 };
 
 export default Visualization;

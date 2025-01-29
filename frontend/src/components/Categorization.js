@@ -8,10 +8,11 @@ const Categorization = ({ file, column, setCategorizedData }) => {
   };
 
   return (
-    <div>
-      <button onClick={fetchCategorizedData}>Categorize Responses</button>
+    <div className="categorization-container">
+      <button className="btn" onClick={fetchCategorizedData}>Categorize Responses</button>
     </div>
   );
+  
 };
 
 export default Categorization;

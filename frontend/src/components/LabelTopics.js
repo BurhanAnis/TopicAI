@@ -19,16 +19,29 @@ const LabelTopics = ({ topics, setTopicLabels }) => {
     };
   
     return (
-      <div>
-        {Object.entries(topics).map(([key, words]) => (
-          <div key={key}>
-            <p>{key}: {words.join(", ")}</p>
-            <input type="text" placeholder="Label" onChange={(e) => handleLabelChange(key, e.target.value)} />
-          </div>
-        ))}
-        <button onClick={saveTopicLabels}>Save Labels</button>
+      <div className="label-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Words</th>
+              <th>Label</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(topics).map(([key, words]) => (
+              <tr key={key}>
+                <td>{key}</td>
+                <td>{words.join(", ")}</td>
+                <td><input type="text" placeholder="Label" onChange={(e) => handleLabelChange(key, e.target.value)} /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button className="btn" onClick={saveTopicLabels}>Save Labels</button>
       </div>
     );
+    
   };
   
 

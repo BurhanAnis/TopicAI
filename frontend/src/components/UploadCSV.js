@@ -28,11 +28,12 @@ const UploadCSV = ({ setColumns, setFile }) => {  // Accept setFile prop to stor
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload CSV</button>
+    <div className="upload-container">
+      <input type="file" onChange={handleFileChange} className="file-input"/>
+      <button className="btn" onClick={handleUpload}>Upload CSV</button>
     </div>
   );
+  
 };
 
 export default UploadCSV;

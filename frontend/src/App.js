@@ -5,13 +5,14 @@ import LabelTopics from "./components/LabelTopics";
 import Categorization from "./components/Categorization";
 import Visualization from "./components/Visualization";
 import { getTopicDistribution } from "./api";
+import "./App.css"; // Ensure styles are applied
 
 const App = () => {
-  const [file, setFile] = useState(null);  // Store uploaded file
+  const [file, setFile] = useState(null);
   const [columns, setColumns] = useState([]);
   const [selectedColumn, setSelectedColumn] = useState("");
   const [topics, setTopics] = useState({});
-  const [topicLabels, setTopicLabels] = useState({})
+  const [topicLabels, setTopicLabels] = useState({});
   const [categorizedData, setCategorizedData] = useState([]);
   const [distribution, setDistribution] = useState({});
 
@@ -29,46 +30,71 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Topic Modeling App</h1>
-      
-      {/* File Upload */}
-      <UploadCSV setColumns={setColumns} setFile={setFile} />
+    <div className="dashboard-container">
+      {/* Sidebar - Upload and Column Selection */}
+      <div className="sidebar">
+        <h2>Upload CSV</h2>
+        <UploadCSV setColumns={setColumns} setFile={setFile} />
 
-      {/* Column Selection */}
-      {columns.length > 0 && (
-        <select onChange={(e) => setSelectedColumn(e.target.value)}>
-          <option value="">Select Column</option>
-          {columns.map((col) => (
-            <option key={col} value={col}>{col}</option>
-          ))}
-        </select>
-      )}
+        {columns.length > 0 && (
+          <div className="column-selection">
+            <h3>Select Column</h3>
+            <select onChange={(e) => setSelectedColumn(e.target.value)}>
+              <option value="">Select Column</option>
+              {columns.map((col) => (
+                <option key={col} value={col}>{col}</option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
 
-      {/* Topic Modeling */}
-      {file && selectedColumn && (
-        <TopicModeling file={file} column={selectedColumn} setTopics={setTopics} />
-      )}
+      {/* Main Content Area */}
+      <div className="main-content">
+        <h1>Topic Modeling App</h1>
 
-      {/* Labeling Topics */}
-      {Object.keys(topics).length > 0 && (
-        <LabelTopics topics={topics} setTopicLabels={setTopicLabels}/>
-      )}
+        {/* Topic Modeling Section */}
+        {file && selectedColumn && (
+          <div className="section">
+            <h2>Topic Modeling</h2>
+            <TopicModeling file={file} column={selectedColumn} setTopics={setTopics} />
+          </div>
+        )}
 
-      {/* Categorization */}
-      {file && selectedColumn && (
-        <Categorization file={file} column={selectedColumn} setCategorizedData={setCategorizedData} />
-      )}
+        {/* Label Topics Section */}
+        {Object.keys(topics).length > 0 && (
+          <div className="section">
+            <h2>Label Topics</h2>
+            <LabelTopics topics={topics} setTopicLabels={setTopicLabels} />
+          </div>
+        )}
 
-      {/* Get Topic Distribution */}
-      <button onClick={fetchTopicDistribution}>Get Topic Distribution</button>
+        {/* Categorization Section */}
+        {file && selectedColumn && (
+          <div className="section">
+            <h2>Categorization</h2>
+            <Categorization file={file} column={selectedColumn} setCategorizedData={setCategorizedData} />
+          </div>
+        )}
 
-      {/* Visualization */}
-      {Object.keys(distribution).length > 0 && <Visualization distribution={distribution} />}
+        {/* Fetch Topic Distribution */}
+        <div className="section">
+          <button className="btn" onClick={fetchTopicDistribution}>Get Topic Distribution</button>
+        </div>
+
+        {/* Visualization Section */}
+        {Object.keys(distribution).length > 0 && (
+          <div className="visualization-section">
+            <h2>Visualization</h2>
+            <Visualization distribution={distribution} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export default App;
+
 
 

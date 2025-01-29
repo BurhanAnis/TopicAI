@@ -1,38 +1,78 @@
-.App {
-  text-align: center;
+/* Overall Page Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #cddac6;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Grid-based Layout */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Sidebar + Main Content */
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Sidebar Styling */
+.sidebar {
+  background-color: #89a37a;
+  padding: 20px;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar h2 {
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Column Selection */
+.column-selection {
+  margin-top: 15px;
 }
+
+.column-selection select {
+  width: 100%;
+  padding: 8px;
+}
+
+/* Main Content Area with Background Image */
+.main-content {
+  padding: 20px;
+  background: url('/Users/burhananis/topic-model-app/frontend/public/background.png') no-repeat center center;
+  background-size: cover;
+}
+
+/* Section Styling */
+.section {
+  background: rgba(255, 255, 255, 0.8); /* Slight transparency */
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styling */
+.btn {
+  padding: 10px 15px;
+  background: #f3f3d8;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #e2e2c3;
+}
+
+/* Visualization Section */
+.visualization-section {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
