@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import pandas as pd
-from utils import get_topics, categorize_responses
+from backend.utils import get_topics, categorize_responses
 import os
 
 app = Flask(__name__)
