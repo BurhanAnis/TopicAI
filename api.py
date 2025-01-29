@@ -9,7 +9,7 @@ def home():
     return "API is running!"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=8080)
 
 topic_labels_store = {}
 topic_results_store = {}
